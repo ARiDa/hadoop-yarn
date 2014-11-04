@@ -1,3 +1,4 @@
+DIR='pwd'
 HADOOP_PREFIX=/usr/local/hadoop-yarn
 mkdir -p ${HADOOP_PREFIX}
 sudo chown -R ubuntu:ubuntu $HADOOP_PREFIX
@@ -23,9 +24,9 @@ echo 'export HADOOP_MAPRED_HOME=$HADOOP_PREFIX' >>  $PROFILE
 echo 'export HADOOP_YARN_HOME=$HADOOP_PREFIX' >>  $PROFILE
 echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin' >>  $PROFILE
 
-source $PROFILE
+source profile
 
 for f in "core" "hdfs" "mapred" "yarn"
 do
-    cp templates/${f}-site.xml $HADOOP_CONF_DIR/${f}-site.xml
+    cat $DIR/templates/${f}-site.xml > $HADOOP_CONF_DIR/${f}-site.xml
 done
